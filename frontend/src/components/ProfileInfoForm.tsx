@@ -40,6 +40,7 @@ export default function ProfileInfoForm() {
 				email: values.email,
 			}).unwrap();
 			dispatch(setCredentials({ userInfo: res.userInfo }));
+      toast.success("Your profile was updated");
 		} catch (error) {
 			if (error) {
 				toast.error(

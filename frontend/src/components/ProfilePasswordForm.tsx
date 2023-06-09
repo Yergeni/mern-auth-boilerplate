@@ -45,6 +45,7 @@ export default function ProfilePasswordForm() {
 				confirmPassword: values.confirmPassword,
 			}).unwrap();
 			dispatch(setCredentials({ userInfo: res.userInfo }));
+      toast.success("Your password was updated");
 		} catch (error) {
 			if (error) {
 				toast.error(
