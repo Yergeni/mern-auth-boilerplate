@@ -1,3 +1,4 @@
+import path from "path";
 import express from "express";
 import dotenv from "dotenv";
 dotenv.config(); // initialized envs
@@ -24,6 +25,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("/api/users", userRoutes);
+
+// /* Needed for production deployment where backend and front will be deployed together */
+// if (process.env.NODE_ENV === "production") {
+// 	const __dirname = path.resolve("../");
+//   console.log(__dirname)
+// 	// Make the `dist` folder a static folder
+// 	app.use(express.static(path.join(__dirname, "/frontend/dist")));
+// 	// point to the index html any route
+// 	app.get("*", (_, res) =>
+// 		res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
+// 	);
+// } else {
+// 	app.get("/", (req, res) => res.status(200).json("Server is ready"));
+// }
 
 app.get("/", (req, res) => res.status(200).json("Server is ready"));
 
