@@ -28,9 +28,11 @@ const registerUser = asyncHandler(async (req, res) => {
 	if (userDoc) {
 		generateToken(res, userDoc._id);
 		res.status(201).json({
-			_id: userDoc._id,
-			name: userDoc.name,
-			email: userDoc.email,
+			userInfo: {
+				_id: userDoc._id,
+				name: userDoc.name,
+				email: userDoc.email,
+			},
 		});
 	} else {
 		res.status(400);
@@ -53,9 +55,11 @@ const authUser = asyncHandler(async (req, res) => {
 	if (userDoc && (await userDoc.matchPasswords(password))) {
 		generateToken(res, userDoc._id);
 		res.status(200).json({
-			_id: userDoc._id,
-			name: userDoc.name,
-			email: userDoc.email,
+			userInfo: {
+				_id: userDoc._id,
+				name: userDoc.name,
+				email: userDoc.email,
+			},
 		});
 	} else {
 		res.status(401);
@@ -110,9 +114,11 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 		const updatedUser = await userDoc.save();
 
 		res.status(200).json({
-			_id: updatedUser._id,
-			name: updatedUser.name,
-			email: updatedUser.email,
+			userInfo: {
+				_id: updatedUser._id,
+				name: updatedUser.name,
+				email: updatedUser.email,
+			},
 		});
 	} else {
 		res.status(404);
