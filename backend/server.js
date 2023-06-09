@@ -1,6 +1,6 @@
-import path from "path";
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 dotenv.config(); // initialized envs
 import cookieParser from "cookie-parser";
 
@@ -13,6 +13,13 @@ import userRoutes from "./routes/userRoutes.js";
 /* MongDB Connection */
 import connectDB from "./config/db.js";
 connectDB();
+
+const corsOptions = {
+	origin: "https://auth-mern-boilerplate.herokuapp.com",
+	// origin: process.env.NODE_ENV === "production" ? "https://auth-mern-boilerplate.herokuapp.com" : "http://localhost:5000",
+	// credentials: true,
+};
+app.use(cors(corsOptions));
 
 const port = process.env.PORT || 5000;
 
