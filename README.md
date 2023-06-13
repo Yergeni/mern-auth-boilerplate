@@ -14,6 +14,8 @@ It includes the following:
 - React Bootstrap UI library
 - React Toastify notifications
 
+[See Demo](https://yero-mern-auth-boilerplate.netlify.app/)
+
 ## Usage
 
 - Create a MongoDB database and obtain your `MongoDB URI` - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
@@ -80,5 +82,5 @@ git subtree push --prefix backend heroku master # push to heroku repo
 cd frontend # go to the front end directory
 git add . # add your changes
 git commit -am "make it better" # commit your changes
-git push origin master # push to Netlify
+git push origin master # push to git (Netlify will trigger the deployment)
 ```
