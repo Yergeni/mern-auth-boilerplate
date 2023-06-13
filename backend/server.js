@@ -14,16 +14,24 @@ import userRoutes from "./routes/userRoutes.js";
 import connectDB from "./config/db.js";
 connectDB();
 
-const corsOptions = {
-	origin: "https://auth-mern-boilerplate.herokuapp.com",
-	// origin: process.env.NODE_ENV === "production" ? "https://auth-mern-boilerplate.herokuapp.com" : "http://localhost:5000",
-	// credentials: true,
-};
-app.use(cors(corsOptions));
-
 const port = process.env.PORT || 5000;
 
 const app = express();
+
+// CORS Configuration
+const whitelist = ['https://yero-mern-auth-boilerplate.netlify.app', 'http://localhost:3000']
+
+const corsOptionsDelegate = function (req, callback) {
+  let corsOptions;
+  if (whitelist.indexOf(req.header('Origin')) !== -1) {
+    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false } // disable CORS for this request
+  }
+  callback(null, corsOptions) // callback expects two parameters: error and options
+}
+app.use(cors(corsOptionsDelegate));
+
 // To handle Content-type requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
