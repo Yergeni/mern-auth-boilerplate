@@ -53,10 +53,32 @@ npm run dev
 yarn server
 ```
 
-## Build & Deploy
+## Deployment
+
+The Backend (server) is deployed to [Heroku](https://dashboard.heroku.com/apps)
+
+The Frontend is deployed to [Netlify](https://app.netlify.com/)
+
+Useful links:
+
+ - [Creating Apps from the CLI](https://devcenter.heroku.com/articles/creating-apps)
+ - [Deploying with Git](https://devcenter.heroku.com/articles/git#create-a-heroku-remote)
+
+### Backend (Server)
+
 
 ```
-# Create frontend prod build
-cd frontend
-npm run build
+cd .. # to the root of the project
+git add . # add your changes
+git commit -am "make it better" # commit your changes
+git subtree push --prefix backend heroku master # push to heroku repo
+```
+
+### Frontend
+
+```
+cd frontend # go to the front end directory
+git add . # add your changes
+git commit -am "make it better" # commit your changes
+git push origin master # push to Netlify
 ```
